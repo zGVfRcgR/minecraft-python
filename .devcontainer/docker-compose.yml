@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: minecraft-server
+    ports:
+      - "25565:25565"
+      - "4711:4711"
+    environment:
+      EULA: "TRUE"
+      TYPE: "SPIGOT"
+    volumes:
+      - ./minecraft/data:/data
+      - ./minecraft/plugins:/plugins
+    restart: unless-stopped
+
+  jupyter:
+    image: jupyter/scipy-notebook
+    container_name: jupyterlab
+    volumes:
+      - .:/workspace
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    depends_on:
+      - minecraft
+    restart: unless-stopped
