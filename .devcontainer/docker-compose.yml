@@ -11,15 +11,15 @@ services:
       EULA: "TRUE"
       TYPE: "SPIGOT"
     volumes:
-      - ./minecraft/data:/data
-      - ./minecraft/plugins:/plugins
+      - ../minecraft/data:/data
+      - ../minecraft/plugins:/plugins
     restart: unless-stopped
 
   jupyter:
     image: jupyter/scipy-notebook
     container_name: jupyterlab
     volumes:
-      - .:/workspace
+      - ../notebooks:/home/jovyan
     ports:
       - "8888:8888"
     environment:
