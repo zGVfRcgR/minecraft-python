@@ -1,0 +1,4 @@
+mcpi
+matplotlib
+numpy
+git+https://github.com/py3minepi/py3minepi
