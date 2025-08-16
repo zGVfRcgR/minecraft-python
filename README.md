@@ -16,18 +16,17 @@ Docker Compose を使って、Minecraft サーバーと JupyterLab を連携さ�
 ## フォルダ構成
 
 ```
-minecraft-python/ 
-├── .devcontainer/ 
-│   ├── docker-compose.yml    
-|   ├── Dockerfile # コメント記載したい
-│   └── requirements.txt # コメント記載したい
-├── minecraft/ 
-│   
-├── data/           # Minecraft のワールドデータ 
-│   └── plugins/        # RaspberryJuice.jar を配置 
-├── notebooks/ 
-│   └── demo.ipynb      # Python ノートブック 
-├── README.md       # このファイル
+minecraft-python/
+├── .devcontainer/
+│   ├── docker-compose.yml     # JupyterLab と Minecraft サーバーを同時に起動するための構成ファイル
+│   ├── Dockerfile             # JupyterLab 用の Python 環境を構築する Dockerfile（mcpi などをインストール）
+│   └── requirements.txt       # JupyterLab コンテナで使用する Python ライブラリの一覧（mcpi, numpy など）
+├── minecraft/
+│   └── data/                  # Minecraft サーバーのワールドデータや設定ファイルを格納
+│       └── plugins/           # RaspberryJuice.jar を配置するディレクトリ（Python 連携用）
+├── notebooks/
+│   └── demo.ipynb             # Python から Minecraft を操作するサンプルノートブック
+├── README.md                  # プロジェクトの概要・使い方・構成を記載したドキュメント
 ```
 
 ## 🚀 利用方法
@@ -54,6 +53,14 @@ docker logs jupyterlab
 
   ```log
   [I 2025-08-16 13:07:39.192 ServerApp] Jupyter Server 2.8.0 is running at:
-  [I 2025-08-16 13:07:39.192 ServerApp] http://b698d43222bd:8888/lab?token=a0c33483baee2a0f6d763fd7c56abd684fcc82576991406c
-  [I 2025-08-16 13:07:39.192 ServerApp]     http://127.0.0.1:8888/lab?token=a0c33483baee2a0f6d763fd7c56abd684fcc82576991406c
+  [I 2025-08-16 13:07:39.192 ServerApp] http://b698d43222bd:8888/lab?token=aac33483baee2a0f6d763fd7056abb884fcc82576991406c
+  [I 2025-08-16 13:07:39.192 ServerApp]     http://127.0.0.1:8888/lab?token=aac33483baee2a0f6d763fd7056abb884fcc82576991406c
   ```
+
+### 2. 接続確認
+
+JupyterLab に Web ブラウザから接続できたら、JupyterLabからMinecraft サーバーに接続できるか確認する。
+
+1. JupyterLabのWeb画面のnotebooksにある"check_mc_connection.jpynb"を実行する。
+2. ✅ 接続成功！と表示されていればいい。
+
